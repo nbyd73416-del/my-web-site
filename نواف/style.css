@@ -282,3 +282,8 @@ footer{padding:50px 0 40px; border-top:1px solid var(--line);}
   .stat-row{gap:30px;}
   .craft-steps{grid-template-columns:1fr;}
 }
+.logo img {
+    width: 90px;
+    height: auto;
+    display: block;
+}
