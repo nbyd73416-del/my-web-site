@@ -59,3 +59,28 @@
       font-weight: bold;
       color: #007bff;
     }
+
+/* Clock feature: follows the existing card styles. */
+.clock {
+  margin: 0 0 16px;
+  padding: 12px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  border-right: 4px solid #007bff;
+}
+
+.clock-label,
+.clock-status {
+  color: #666;
+  font-size: 13px;
+}
+
+.clock-time {
+  display: block;
+  margin: 5px 0;
+  color: #007bff;
+  font-size: 24px;
+  font-weight: bold;
+  direction: ltr;
+}
+
