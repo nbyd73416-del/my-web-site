@@ -4,38 +4,30 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>السيرة الذاتية - نواف ناصر عبيد</title>
-  <link rel="stylesheet" href="index.css">
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
 </head>
 <body>
-
-  <div class="card">
-    
-    <!-- شعار NA بصيغة SVG مباشرة داخل HTML -->
-    <svg class="logo-img" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-      <!-- خلفية دائرة كحلي -->
+  <main class="card">
+    <svg class="logo-img" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="شعار NA">
       <circle cx="50" cy="50" r="48" fill="#1e293b" />
-      <!-- نص NA باللون الأبيض في المنتصف -->
       <text x="50" y="58" font-family="Arial, sans-serif" font-size="34" font-weight="bold" fill="#ffffff" text-anchor="middle">NA</text>
     </svg>
 
-    <!-- الاسم -->
     <h1>Nawaf Nasser Obiad</h1>
     <p>طالب تكنولوجيا المعلومات</p>
 
-    <!-- التفاصيل -->
-    <div class="info">
+    <section class="clock" aria-label="الساعة الحالية">
+      <div class="clock-label">الوقت الحالي</div>
+      <time id="currentTime" class="clock-time" aria-live="off">--:--:--</time>
+      <div id="clockStatus" class="clock-status" role="status">جارٍ تحميل الوقت من API...</div>
+    </section>
+
+    <section class="info" aria-label="المعلومات الأكاديمية">
       <div class="info-item">التخصص: <span>IT</span></div>
-      <div class="info-item">المادة: <span style="direction: ltr; display: inline-block;">Web Programming</span></div>
-    </div>
-    <div>
-      <div class="info">
-  <div class="info-item">التخصص: <span>IT</span></div>
-  <div class="info-item">المادة: <span style="direction: ltr; display: inline-block;">Web Programming</span></div>
-  <div class="info-item">اللغات: <span>العربية / الإنجليزية</span></div>
-</div>
-    </div>
-
-  </div>
-
+      <div class="info-item">المادة: <span dir="ltr">Web Programming</span></div>
+      <div class="info-item">اللغات: <span>العربية / الإنجليزية</span></div>
+    </section>
+  </main>
 </body>
 </html>
