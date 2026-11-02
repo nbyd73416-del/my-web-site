@@ -1,23 +1,51 @@
-// header scroll state
-const header = document.getElementById('siteHeader');
-window.addEventListener('scroll', () => {
-  header.classList.toggle('scrolled', window.scrollY > 30);
-});
+// Get an initial time from the public World Time API, then update locally each second.
+const timeElement = document.getElementById('currentTime');
+const statusElement = document.getElementById('clockStatus');
+const localTimeZone = Intl.DateTimeFormat().resolvedOptions().timeZone || 'Asia/Riyadh';
+const apiUrl = `https://worldtime.timezone.io/api/timezone/${encodeURIComponent(localTimeZone).replace(/%2F/gi, '/')}`;
 
-// mobile nav
-const burger = document.getElementById('burgerBtn');
-const navLinks = document.getElementById('navLinks');
-burger.addEventListener('click', () => navLinks.classList.toggle('open'));
-navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navLinks.classList.remove('open')));
+let syncedTime = Date.now();
+let syncStartedAt = Date.now();
+let activeTimeZone = localTimeZone;
 
-// collection tabs
-const tabBtns = document.querySelectorAll('.tab-btn');
-const panels = document.querySelectorAll('.menu-panel');
-tabBtns.forEach(btn => {
-  btn.addEventListener('click', () => {
-    tabBtns.forEach(b => b.classList.remove('active'));
-    panels.forEach(p => p.classList.remove('active'));
-    btn.classList.add('active');
-    document.getElementById(btn.dataset.tab).classList.add('active');
-  });
-});
+function renderClock() {
+  const now = new Date(syncedTime + (Date.now() - syncStartedAt));
+  timeElement.textContent = new Intl.DateTimeFormat('ar-SA', {
+    timeZone: activeTimeZone,
+    hour: '2-digit',
+    minute: '2-digit',
+    second: '2-digit',
+    hourCycle: 'h23'
+  }).format(now);
+  timeElement.dateTime = now.toISOString();
+}
+
+async function syncClock() {
+  try {
+    const response = await fetch(apiUrl, { cache: 'no-store' });
+    if (!response.ok) throw new Error(`API response: ${response.status}`);
+
+    const timeData = await response.json();
+    const apiTime = Date.parse(timeData.datetime);
+    if (!Number.isFinite(apiTime) || !timeData.timezone) {
+      throw new Error('The API returned invalid time data');
+    }
+
+    syncedTime = apiTime;
+    syncStartedAt = Date.now();
+    activeTimeZone = timeData.timezone;
+    statusElement.textContent = `متصل بواجهة الوقت API · ${activeTimeZone}`;
+  } catch (error) {
+    // Keep the clock usable when the API or internet connection is unavailable.
+    syncedTime = Date.now();
+    syncStartedAt = Date.now();
+    statusElement.textContent = 'تعذر الاتصال بالـ API؛ يعرض الوقت المحلي';
+  }
+
+  renderClock();
+}
+
+renderClock();
+window.setInterval(renderClock, 1000);
+syncClock();
+window.setInterval(syncClock, 5 * 60 * 1000);
