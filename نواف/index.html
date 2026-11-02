@@ -4,29 +4,31 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>السيرة الذاتية - نواف ناصر عبيد</title>
-  <link rel="stylesheet" href="style.css">
+
+  <!-- Tailwind CSS Play CDN for this workshop project. -->
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
   <script src="script.js" defer></script>
 </head>
-<body>
-  <main class="card">
-    <svg class="logo-img" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="شعار NA">
+<body class="flex min-h-screen items-center justify-center bg-[#f0f2f5] p-4 font-[Arial,sans-serif]">
+  <main class="w-full max-w-[380px] rounded-xl bg-white p-[30px] text-center shadow-[0_4px_12px_rgba(0,0,0,0.1)]">
+    <svg class="mx-auto mb-[15px] h-[90px] w-[90px]" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="شعار NA">
       <circle cx="50" cy="50" r="48" fill="#1e293b" />
       <text x="50" y="58" font-family="Arial, sans-serif" font-size="34" font-weight="bold" fill="#ffffff" text-anchor="middle">NA</text>
     </svg>
 
-    <h1>Nawaf Nasser Obiad</h1>
-    <p>طالب تكنولوجيا المعلومات</p>
+    <h1 class="mt-[10px] mb-[5px] text-[20px] font-bold text-[#333] [direction:ltr]">Nawaf Nasser Obiad</h1>
+    <p class="mb-5 text-[14px] text-[#666]">طالب تكنولوجيا المعلومات</p>
 
-    <section class="clock" aria-label="الساعة الحالية">
-      <div class="clock-label">الوقت الحالي</div>
-      <time id="currentTime" class="clock-time" aria-live="off">--:--:--</time>
-      <div id="clockStatus" class="clock-status" role="status">جارٍ تحميل الوقت من API...</div>
+    <section class="mb-4 rounded-lg border-r-4 border-[#007bff] bg-[#f9f9f9] p-3" aria-label="الساعة الحالية">
+      <div class="text-[13px] text-[#666]">الوقت الحالي</div>
+      <time id="currentTime" class="my-1 block text-2xl font-bold text-[#007bff] [direction:ltr]" aria-live="off">--:--:--</time>
+      <div id="clockStatus" class="text-[13px] text-[#666]" role="status">جارٍ تحميل الوقت من API...</div>
     </section>
 
-    <section class="info" aria-label="المعلومات الأكاديمية">
-      <div class="info-item">التخصص: <span>IT</span></div>
-      <div class="info-item">المادة: <span dir="ltr">Web Programming</span></div>
-      <div class="info-item">اللغات: <span>العربية / الإنجليزية</span></div>
+    <section class="rounded-lg border-r-4 border-[#007bff] bg-[#f9f9f9] p-[15px] text-right" aria-label="المعلومات الأكاديمية">
+      <div class="info-item my-2 text-[14px] text-[#444]">التخصص: <span class="font-bold text-[#007bff]">IT</span></div>
+      <div class="info-item my-2 text-[14px] text-[#444]">المادة: <span class="font-bold text-[#007bff]" dir="ltr">Web Programming</span></div>
+      <div class="info-item my-2 text-[14px] text-[#444]">اللغات: <span class="font-bold text-[#007bff]">العربية / الإنجليزية</span></div>
     </section>
   </main>
 </body>
